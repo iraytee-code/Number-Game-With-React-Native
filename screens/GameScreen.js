@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import NumberContainer from "../components/game/NumberContainer";
 import CustomButton from "../components/ui/CustomButton";
 import Instruction from "../components/ui/Instruction";
+import Card from "../components/ui/Card";
+import { AntDesign } from "@expo/vector-icons";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -58,17 +60,21 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     <View style={styles.screen}>
       <Title>Computer's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
+      <Card>
         <Instruction>Higher Or Lower?</Instruction>
-        <View>
-          <CustomButton onPress={nextGuessHandler.bind(this, "lower")}>
-            -
-          </CustomButton>
-          <CustomButton onPress={nextGuessHandler.bind(this, "greater")}>
-            +
-          </CustomButton>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={nextGuessHandler.bind(this, "lower")}>
+              <AntDesign name="caretdown" size={24} color="white" />
+            </CustomButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={nextGuessHandler.bind(this, "greater")}>
+              <AntDesign name="caretup" size={24} color="white" />
+            </CustomButton>
+          </View>
         </View>
-      </View>
+      </Card>
       <View>{/* <Text>Log Rounds</Text> */}</View>
     </View>
   );
@@ -82,8 +88,13 @@ const styles = StyleSheet.create({
     padding: 12,
   },
 
-  buttonContainer: {
+  buttonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
+    marginTop: 30,
+  },
+
+  buttonContainer: {
+    flex: 1,
   },
 });

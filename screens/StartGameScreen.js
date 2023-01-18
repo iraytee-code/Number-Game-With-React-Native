@@ -6,6 +6,7 @@ import Card from "../components/ui/Card";
 import Instruction from "../components/ui/Instruction";
 import { useState } from "react";
 import Colors from "../utils/colors";
+import { AntDesign } from "@expo/vector-icons";
 
 const StartGameScreen = ({ onPickNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState("");
@@ -46,10 +47,18 @@ const StartGameScreen = ({ onPickNumber }) => {
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <CustomButton onPress={resetInputHandler}>Reset</CustomButton>
+            <CustomButton onPress={resetInputHandler}>
+              <AntDesign name="reload1" size={24} color={Colors.accent500} />
+            </CustomButton>
           </View>
           <View style={styles.buttonContainer}>
-            <CustomButton onPress={confirmInputHandler}>Confirm</CustomButton>
+            <CustomButton onPress={confirmInputHandler}>
+              <AntDesign
+                name="checksquare"
+                size={24}
+                color={Colors.accent500}
+              />
+            </CustomButton>
           </View>
         </View>
       </Card>
